@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<!-- ============================================================
+     Klik Hadir — engine.xml
+     Template Blogger tipis: satu template untuk semua undangan
+     dan semua tema. Logika undangan dimuat dari CDN (jsDelivr).
+     Versi: 1.0.0
+     ============================================================ -->
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateUrl='engine.xml' b:templateVersion='1.0.0' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+  <meta charset='UTF-8'/>
+  <meta content='width=device-width, initial-scale=1' name='viewport'/>
+  <b:include data='blog' name='all-head-content'/>
+  <b:if cond='data:blog.pageType == &quot;static_page&quot;'>
+    <meta content='website' property='og:type'/>
+    <meta expr:content='data:blog.pageName' property='og:title'/>
+    <meta expr:content='data:blog.canonicalUrl' property='og:url'/>
+    <meta expr:content='data:blog.pageName' name='description'/>
+  </b:if>
+  <b:skin><![CDATA[
+  /* Klik Hadir engine — gaya dasar template (detail di engine/core.css) */
+  #navbar-iframe{display:none!important}
+  .kh-config-wrap{display:none!important}
+  #Attribution1,.Attribution,.widget.Attribution{display:none!important}
+  html,body{margin:0;padding:0}
+  #app{min-height:100vh}
+  #katalog{max-width:1120px;margin:0 auto;padding:28px 16px}
+  .kh-error{max-width:640px;margin:48px auto;padding:24px 20px;border:1px solid #e5c07b;background:#fff8ec;border-radius:12px;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;color:#5b4a2f;line-height:1.65;font-size:15px}
+  .kh-error strong{color:#8a5a1e;display:block;margin-bottom:8px;font-size:17px}
+  ]]></b:skin>
+</head>
+<body>
+  <b:section class='kh-main' id='kh-main' maxwidgets='1' name='Isi Undangan' showaddelement='no'>
+    <b:widget id='Blog1' locked='true' title='Isi Undangan' type='Blog' version='2'>
+      <b:includable id='main' var='top'>
+        <b:loop values='data:posts' var='post'>
+          <b:if cond='data:blog.pageType == &quot;static_page&quot;'>
+            <!-- MODE UNDANGAN: wadah tema + config tersembunyi dari badan Halaman -->
+            <div id='app'></div>
+            <div class='kh-config-wrap' id='kh-config-wrap'><data:post.body/></div>
+          <b:elseif cond='data:blog.pageType == &quot;index&quot;'/>
+            <!-- MODE KATALOG: hanya sekali, di postingan pertama -->
+            <b:if cond='data:post.isFirstPost'>
+              <div id='katalog'></div>
+            </b:if>
+          </b:if>
+        </b:loop>
+      </b:includable>
+    </b:widget>
+  </b:section>
+
+  <b:section class='kh-footer' id='kh-footer' maxwidgets='1' name='Atribusi' showaddelement='no'>
+    <b:widget id='Attribution1' locked='true' title='' type='Attribution' version='2'>
+      <b:includable id='main'>
+        <div style='display:none'>Didukung oleh Blogger</div>
+      </b:includable>
+    </b:widget>
+  </b:section>
+
+  <script>
+  //<![CDATA[
+  /* Bootstrap Klik Hadir: pilih mode dari DOM, baca versi dari config,
+     lalu muat engine yang sesuai dari jsDelivr sebagai ES module. */
+  (function () {
+    'use strict';
+
+    var CDN_REPO = 'https://cdn.jsdelivr.net/gh/ilmaanisa2605-spark/undangan@';
+
+    function tampilkanError(pesan) {
+      var target = document.getElementById('app') ||
+                   document.getElementById('katalog') ||
+                   document.getElementById('kh-main') ||
+                   document.body;
+      var box = document.createElement('div');
+      box.className = 'kh-error';
+      var judul = document.createElement('strong');
+      judul.textContent = 'Ups, undangannya belum bisa ditampilkan.';
+      var isi = document.createElement('span');
+      isi.textContent = pesan;
+      box.appendChild(judul);
+      box.appendChild(isi);
+      target.innerHTML = '';
+      target.appendChild(box);
+    }
+
+    function mulai() {
+      var modeKatalog = !!document.getElementById('katalog');
+      var v = '1.0.0';
+
+      if (!modeKatalog) {
+        /* Mode undangan: ambil versi engine dari blok config Halaman */
+        try {
+          var cfgEl = document.getElementById('config');
+          if (cfgEl) {
+            var teks = cfgEl.textContent || cfgEl.innerText || '{}';
+            var cfgAwal = JSON.parse(teks);
+            if (cfgAwal && cfgAwal.v) v = String(cfgAwal.v);
+          }
+        } catch (e) {
+          v = '1.0.0';
+        }
+      }
+
+      var BASE = CDN_REPO + v;
+      window.__KH_BASE = BASE;
+
+      var berkas = modeKatalog ? 'catalog.js' : 'loader.js';
+      import(BASE + '/engine/' + berkas).catch(function () {
+        tampilkanError('Gagal memuat engine dari internet (' + berkas + '). ' +
+          'Periksa koneksi internet, lalu muat ulang halaman ini. ' +
+          'Jika masih gagal, hubungi pembuat undangan.');
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', mulai);
+    } else {
+      mulai();
+    }
+  })();
+  //]]>
+  </script>
+</body>
+</html>
