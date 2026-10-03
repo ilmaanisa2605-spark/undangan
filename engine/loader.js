@@ -216,7 +216,7 @@ function isiNamaTamu(akar) {
 
 /* Ganti placeholder {{...}} di atribut alt (tidak terjangkau TreeWalker teks) */
 function isiAlt(akar, cfg) {
-  $('[alt]', akar).forEach(function (el) {
+  $$('[alt]', akar).forEach(function (el) {
     var v = el.getAttribute('alt');
     if (v && v.indexOf('{{') !== -1) {
       el.setAttribute('alt', isiTeks(v, cfg));
