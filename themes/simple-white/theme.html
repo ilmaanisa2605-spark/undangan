@@ -1,184 +1,87 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Jost:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
-<div class="fg">
+<div class="sw">
   <!-- ============ COVER ============ -->
-  <section class="fg-cover" data-fitur="cover">
-    <div class="fg-cover__bg"><img data-src="{{cover}}" alt="Foto sampul {{judul}}"></div>
-    <div class="fg-cover__veil"></div>
-    <div class="fg-cover__card">
-      <svg class="fg-flourish fg-flourish--top" viewBox="0 0 120 24" aria-hidden="true"><path d="M4 20 C 30 4, 60 4, 60 12 C 60 4, 90 4, 116 20" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="60" cy="14" r="2.6" fill="currentColor"/><circle cx="34" cy="12" r="1.6" fill="currentColor" opacity=".7"/><circle cx="86" cy="12" r="1.6" fill="currentColor" opacity=".7"/></svg>
-      <p class="fg-eyebrow kh-reveal">The Wedding of</p>
-      <h1 class="fg-names kh-reveal">{{mempelai.0.panggilan}} <span>&amp;</span> {{mempelai.1.panggilan}}</h1>
-      <div class="fg-arch kh-reveal"><img data-src="{{mempelai.0.foto}}" alt="{{mempelai.0.panggilan}} &amp; {{mempelai.1.panggilan}}"></div>
-      <p class="fg-date kh-reveal">{{acara.daftar.0.tanggal}}</p>
-      <p class="fg-guest kh-reveal">Kepada Yth.<br>Bapak/Ibu/Saudara/i</p>
-      <p class="fg-guest__name kh-reveal" data-nama-tamu>Tamu Undangan</p>
-      <button class="fg-btn kh-reveal" id="btn-buka" type="button">Buka Undangan</button>
-      <svg class="fg-flourish fg-flourish--bottom" viewBox="0 0 120 24" aria-hidden="true"><path d="M4 4 C 30 20, 60 20, 60 12 C 60 20, 90 20, 116 4" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="60" cy="10" r="2.6" fill="currentColor"/><circle cx="34" cy="12" r="1.6" fill="currentColor" opacity=".7"/><circle cx="86" cy="12" r="1.6" fill="currentColor" opacity=".7"/></svg>
+  <section class="sw-cover" data-fitur="cover">
+    <div class="sw-cover__bg" data-sway><img data-src="{{cover}}" alt="Foto sampul {{judul}}"></div>
+    <div class="sw-cover__veil"></div>
+    <div class="sw-cover__inner">
+      <p class="sw-eyebrow kh-reveal">Undangan Pernikahan</p>
+      <h1 class="sw-names kh-reveal"><span>{{mempelai.0.panggilan}}</span><em>&amp;</em><span>{{mempelai.1.panggilan}}</span></h1>
+      <div class="sw-rule kh-reveal"><span></span></div>
+      <p class="sw-date kh-reveal">{{acara.daftar.0.tanggal}}</p>
+      <p class="sw-guest kh-reveal">Kepada Yth.<br>Bapak/Ibu/Saudara/i</p>
+      <p class="sw-guest__name kh-reveal" data-nama-tamu>Tamu Undangan</p>
+      <button class="sw-btn kh-reveal" id="btn-buka" type="button">Buka Undangan</button>
     </div>
-    <div class="fg-petals" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
   </section>
 
   <!-- ============ SALAM ============ -->
-  <section class="fg-section" data-fitur="salam" id="salam">
-    <svg class="fg-divider kh-reveal" viewBox="0 0 200 20" aria-hidden="true"><path d="M10 10 H 80 M120 10 H 190" stroke="currentColor" stroke-width="1"/><path d="M100 4 C 106 4, 108 8, 100 10 C 92 8, 94 4, 100 4 Z M100 16 C 106 16, 108 12, 100 10 C 92 12, 94 16, 100 16 Z" fill="currentColor"/></svg>
-    <p class="fg-salam__pembuka kh-reveal">{{salam.pembuka}}</p>
-    <blockquote class="fg-salam__kutipan kh-reveal">{{salam.kutipan}}</blockquote>
+  <section class="sw-section" data-fitur="salam" id="salam">
+    <p class="sw-kicker kh-reveal">01 — Salam Pembuka</p>
+    <p class="sw-salam__pembuka kh-reveal">{{salam.pembuka}}</p>
+    <blockquote class="sw-salam__kutipan kh-reveal">{{salam.kutipan}}</blockquote>
   </section>
 
-  <!-- ============ PROFIL ============ -->
-  <section class="fg-section" data-fitur="profil" id="profil">
-    <p class="fg-kicker kh-reveal">Mempelai Berbahagia</p>
-    <h2 class="fg-h2 kh-reveal">Dua Hati, Satu Tujuan</h2>
-    <div class="fg-couple">
-      <article class="fg-person kh-reveal">
-        <div class="fg-person__frame"><img data-src="{{mempelai.0.foto}}" alt="{{mempelai.0.nama}}"></div>
-        <h3 class="fg-person__nama">{{mempelai.0.nama}}</h3>
-        <p class="fg-person__ortu">{{mempelai.0.ortu}}</p>
-        <a class="fg-person__ig" data-href="{{mempelai.0.instagram}}" target="_blank" rel="noopener">@ Instagram</a>
+  <!-- ============ PROFIL MEMPELAI ============ -->
+  <section class="sw-section" data-fitur="profil" id="profil">
+    <p class="sw-kicker kh-reveal">02 — Mempelai</p>
+    <h2 class="sw-h2 kh-reveal">Assalamu'alaikum, kami yang berbahagia</h2>
+    <div class="sw-couple">
+      <article class="sw-person kh-reveal">
+        <div class="sw-person__frame"><img data-src="{{mempelai.0.foto}}" alt="{{mempelai.0.nama}}"></div>
+        <h3 class="sw-person__nama">{{mempelai.0.nama}}</h3>
+        <p class="sw-person__ortu">{{mempelai.0.ortu}}</p>
+        <a class="sw-person__ig" data-href="{{mempelai.0.instagram}}" target="_blank" rel="noopener">Lihat Instagram</a>
       </article>
-      <div class="fg-heart kh-reveal" aria-hidden="true">❦</div>
-      <article class="fg-person kh-reveal">
-        <div class="fg-person__frame"><img data-src="{{mempelai.1.foto}}" alt="{{mempelai.1.nama}}"></div>
-        <h3 class="fg-person__nama">{{mempelai.1.nama}}</h3>
-        <p class="fg-person__ortu">{{mempelai.1.ortu}}</p>
-        <a class="fg-person__ig" data-href="{{mempelai.1.instagram}}" target="_blank" rel="noopener">@ Instagram</a>
+      <div class="sw-amp kh-reveal">&amp;</div>
+      <article class="sw-person kh-reveal">
+        <div class="sw-person__frame"><img data-src="{{mempelai.1.foto}}" alt="{{mempelai.1.nama}}"></div>
+        <h3 class="sw-person__nama">{{mempelai.1.nama}}</h3>
+        <p class="sw-person__ortu">{{mempelai.1.ortu}}</p>
+        <a class="sw-person__ig" data-href="{{mempelai.1.instagram}}" target="_blank" rel="noopener">Lihat Instagram</a>
       </article>
-    </div>
-  </section>
-
-  <!-- ============ COUNTDOWN ============ -->
-  <section class="fg-section fg-section--blush" data-fitur="countdown">
-    <p class="fg-kicker kh-reveal">Menuju Hari Bahagia</p>
-    <h2 class="fg-h2 kh-reveal">Menghitung Hari</h2>
-    <div class="fg-cd kh-reveal" data-countdown>
-      <div class="fg-cd__item"><span data-cd-d>0</span><small>Hari</small></div>
-      <div class="fg-cd__item"><span data-cd-h>0</span><small>Jam</small></div>
-      <div class="fg-cd__item"><span data-cd-m>0</span><small>Menit</small></div>
-      <div class="fg-cd__item"><span data-cd-s>0</span><small>Detik</small></div>
     </div>
   </section>
 
   <!-- ============ ACARA ============ -->
-  <section class="fg-section" data-fitur="acara" id="acara">
-    <p class="fg-kicker kh-reveal">Waktu &amp; Tempat</p>
-    <h2 class="fg-h2 kh-reveal">Save the Date</h2>
+  <section class="sw-section sw-section--alt" data-fitur="acara" id="acara">
+    <p class="sw-kicker kh-reveal">03 — Waktu &amp; Tempat</p>
+    <h2 class="sw-h2 kh-reveal">Save the Date</h2>
     <div data-ulang="acara.daftar">
-      <article class="fg-event kh-reveal kh-repeat">
-        <svg class="fg-event__leaf" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 C 17 7, 20 12, 12 22 C 4 12, 7 7, 12 2 Z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
-        <h3 class="fg-event__nama">{{nama}}</h3>
-        <p class="fg-event__tanggal">{{tanggal}}</p>
-        <p class="fg-event__jam">{{jam}}</p>
+      <article class="sw-event kh-reveal kh-repeat">
+        <p class="sw-event__nama">{{nama}}</p>
+        <p class="sw-event__tanggal">{{tanggal}}</p>
+        <p class="sw-event__jam">{{jam}}</p>
       </article>
     </div>
-    <div class="fg-venue kh-reveal">
-      <h3 class="fg-venue__nama">{{lokasi.nama}}</h3>
-      <p class="fg-venue__alamat">{{lokasi.alamat}}</p>
-      <div class="fg-venue__actions">
-        <a class="fg-btn fg-btn--sm" data-href="{{lokasi.maps}}" target="_blank" rel="noopener">Lihat Peta</a>
-        <a class="fg-btn fg-btn--sm fg-btn--ghost" data-kalender target="_blank" rel="noopener">Simpan Tanggal</a>
+    <div class="sw-venue kh-reveal">
+      <h3 class="sw-venue__nama">{{lokasi.nama}}</h3>
+      <p class="sw-venue__alamat">{{lokasi.alamat}}</p>
+      <div class="sw-venue__actions">
+        <a class="sw-btn sw-btn--sm" data-href="{{lokasi.maps}}" target="_blank" rel="noopener">Lihat Peta</a>
+        <a class="sw-btn sw-btn--sm sw-btn--ghost" data-kalender target="_blank" rel="noopener">Tambah ke Kalender</a>
       </div>
     </div>
   </section>
 
-  <!-- ============ KISAH ============ -->
-  <section class="fg-section fg-section--blush" data-fitur="kisah">
-    <p class="fg-kicker kh-reveal">Perjalanan Kami</p>
-    <h2 class="fg-h2 kh-reveal">Kisah Cinta</h2>
-    <div class="fg-timeline" data-ulang="kisah">
-      <article class="fg-tl kh-reveal kh-repeat">
-        <span class="fg-tl__waktu">{{waktu}}</span>
-        <h3 class="fg-tl__judul">{{judul}}</h3>
-        <p class="fg-tl__isi">{{isi}}</p>
-      </article>
-    </div>
-  </section>
-
   <!-- ============ GALERI ============ -->
-  <section class="fg-section" data-fitur="galeri" id="galeri">
-    <p class="fg-kicker kh-reveal">Galeri</p>
-    <h2 class="fg-h2 kh-reveal">Momen Indah</h2>
-    <div class="fg-grid" data-ulang="galeri">
+  <section class="sw-section" data-fitur="galeri" id="galeri">
+    <p class="sw-kicker kh-reveal">04 — Galeri</p>
+    <h2 class="sw-h2 kh-reveal">Momen Bahagia</h2>
+    <div class="sw-grid" data-ulang="galeri">
       <figure class="kh-repeat kh-reveal"><img data-src="{{.}}" alt="Galeri foto {{judul}}" loading="lazy"></figure>
     </div>
   </section>
 
-  <!-- ============ RSVP ============ -->
-  <section class="fg-section fg-section--blush" data-fitur="rsvp" id="rsvp">
-    <p class="fg-kicker kh-reveal">Konfirmasi Kehadiran</p>
-    <h2 class="fg-h2 kh-reveal">RSVP</h2>
-    <form class="fg-form" id="rsvp-form">
-      <label class="fg-field"><span>Nama lengkap</span><input type="text" name="nama" required maxlength="100" placeholder="Tulis nama Anda"></label>
-      <label class="fg-field"><span>Konfirmasi kehadiran</span>
-        <select name="status" required>
-          <option value="Hadir">Hadir, insyaAllah</option>
-          <option value="Ragu">Masih ragu</option>
-          <option value="Tidak">Berhalangan</option>
-        </select>
-      </label>
-      <label class="fg-field"><span>Ucapan &amp; doa</span><textarea name="ucapan" rows="3" placeholder="Tuliskan doa terbaik Anda..."></textarea></label>
-      <input type="text" name="website" class="kh-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <button class="fg-btn" type="submit">Kirim RSVP</button>
-      <p class="fg-form__note" data-rsvp-note></p>
-    </form>
-  </section>
-
-  <!-- ============ UCAPAN ============ -->
-  <section class="fg-section" data-fitur="ucapan">
-    <p class="fg-kicker kh-reveal">Doa &amp; Ucapan</p>
-    <h2 class="fg-h2 kh-reveal">Ucapan Tamu</h2>
-    <div class="fg-wishes" data-daftar-ucapan><p class="fg-wishes__empty">Memuat ucapan...</p></div>
-  </section>
-
-  <!-- ============ HADIAH ============ -->
-  <section class="fg-section fg-section--blush" data-fitur="hadiah">
-    <p class="fg-kicker kh-reveal">Tanda Kasih</p>
-    <h2 class="fg-h2 kh-reveal">Amplop Digital</h2>
-    <p class="fg-hadiah__intro kh-reveal">Doa restu Anda adalah hadiah terindah. Namun jika berkenan memberi tanda kasih, kami sediakan dengan penuh syukur:</p>
-    <div data-ulang="rekening">
-      <article class="fg-rek kh-reveal kh-repeat">
-        <p class="fg-rek__bank">{{bank}}</p>
-        <p class="fg-rek__nomor">{{nomor}}</p>
-        <p class="fg-rek__nama">a.n. {{nama}}</p>
-        <button class="fg-btn fg-btn--sm" type="button" data-salin="{{nomor}}">Salin Nomor</button>
-      </article>
-    </div>
-  </section>
-
-  <!-- ============ INFO ============ -->
-  <section class="fg-section" data-fitur="info">
-    <p class="fg-kicker kh-reveal">Catatan</p>
-    <h2 class="fg-h2 kh-reveal">Informasi</h2>
-    <ul class="fg-info" data-ulang="info">
-      <li class="kh-repeat kh-reveal">{{.}}</li>
-    </ul>
-  </section>
-
   <!-- ============ PENUTUP ============ -->
-  <section class="fg-section fg-penutup" data-fitur="penutup">
-    <svg class="fg-divider kh-reveal" viewBox="0 0 200 20" aria-hidden="true"><path d="M10 10 H 80 M120 10 H 190" stroke="currentColor" stroke-width="1"/><path d="M100 4 C 106 4, 108 8, 100 10 C 92 8, 94 4, 100 4 Z M100 16 C 106 16, 108 12, 100 10 C 92 12, 94 16, 100 16 Z" fill="currentColor"/></svg>
-    <p class="fg-penutup__teks kh-reveal">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu kepada kedua mempelai.</p>
-    <p class="fg-penutup__salam kh-reveal">Wassalamu'alaikum Wr. Wb.</p>
-    <p class="fg-penutup__nama kh-reveal">{{mempelai.0.panggilan}} &amp; {{mempelai.1.panggilan}}</p>
-    <p class="fg-kredit kh-reveal"><a data-href="{{kredit.url}}" target="_blank" rel="noopener">{{kredit.foto}}</a></p>
+  <section class="sw-section sw-penutup" data-fitur="penutup">
+    <div class="sw-rule kh-reveal"><span></span></div>
+    <p class="sw-penutup__teks kh-reveal">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada kedua mempelai.</p>
+    <p class="sw-penutup__salam kh-reveal">Wassalamu'alaikum Wr. Wb.</p>
+    <p class="sw-penutup__nama kh-reveal">{{mempelai.0.panggilan}} &amp; {{mempelai.1.panggilan}}</p>
+    <p class="sw-kredit kh-reveal"><a data-href="{{kredit.url}}" target="_blank" rel="noopener">{{kredit.foto}}</a></p>
   </section>
-
-  <!-- ============ MUSIK ============ -->
-  <div class="fg-musik" data-fitur="musik">
-    <audio data-musik data-src="{{musik}}" loop preload="none"></audio>
-    <button id="btn-musik" type="button" aria-label="Putar / jeda musik">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18 V6 l10 -2 v11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6.5" cy="18" r="2.5" fill="currentColor"/><circle cx="16.5" cy="15" r="2.5" fill="currentColor"/></svg>
-    </button>
-  </div>
-
-  <!-- ============ NAV ============ -->
-  <nav class="fg-nav" data-fitur="nav" aria-label="Navigasi undangan">
-    <a href="#salam">Salam</a>
-    <a href="#profil">Mempelai</a>
-    <a href="#acara">Acara</a>
-    <a href="#galeri">Galeri</a>
-    <a href="#rsvp">RSVP</a>
-  </nav>
 </div>
