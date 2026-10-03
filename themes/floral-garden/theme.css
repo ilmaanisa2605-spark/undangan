@@ -1,0 +1,265 @@
+/* ============================================================
+   FLORAL GARDEN — tema romantis taman bunga (paket premium)
+   Paradigma: kartu lembut + bingkai lengkung + ornamen bunga.
+   Palet: blush, rose, sage, krem.
+   ============================================================ */
+.fg {
+  --fg-cream: #fff9f5;
+  --fg-blush: #f8e9e2;
+  --fg-rose: #c08a92;
+  --fg-deep: #a9607b;
+  --fg-sage: #8fa38a;
+  --fg-plum: #4a3540;
+  --fg-soft: #9a8494;
+  --fg-card: #ffffff;
+  --fg-serif: "Playfair Display", Georgia, serif;
+  --fg-sans: "Jost", -apple-system, "Segoe UI", sans-serif;
+
+  background: var(--fg-cream);
+  color: var(--fg-plum);
+  font-family: var(--fg-sans);
+  font-weight: 300;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+  padding-bottom: 4.2rem; /* ruang untuk nav bawah */
+}
+.fg img { display: block; max-width: 100%; }
+.fg a { color: var(--fg-deep); }
+
+/* ---------- Cover ---------- */
+.fg-cover {
+  position: relative; min-height: 100svh;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; overflow: hidden; isolation: isolate;
+  padding: 2rem 1.25rem;
+}
+.fg-cover__bg { position: absolute; inset: 0; z-index: -2; }
+.fg-cover__bg img { width: 100%; height: 100%; object-fit: cover; }
+.fg-cover__veil {
+  position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, rgba(255,249,245,.88), rgba(248,233,226,.72) 55%, rgba(255,249,245,.94));
+}
+.fg-cover__card {
+  position: relative; background: rgba(255,255,255,.72);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(192,138,146,.35); border-radius: 1.4rem;
+  padding: 2.6rem 1.6rem; max-width: 24rem; width: 100%;
+  box-shadow: 0 30px 60px -30px rgba(169,96,123,.35);
+}
+.fg-flourish { width: 7.5rem; color: var(--fg-rose); margin: 0 auto .8rem; display: block; }
+.fg-flourish--bottom { margin: 1.2rem auto 0; }
+.fg-eyebrow { font-size: .7rem; letter-spacing: .45em; text-transform: uppercase; color: var(--fg-soft); margin: 0 0 .6rem; }
+.fg-names {
+  font-family: var(--fg-serif); font-weight: 600;
+  font-size: clamp(2.4rem, 11vw, 3.2rem); line-height: 1.12; margin: 0 0 1.2rem; color: var(--fg-plum);
+}
+.fg-names span { font-style: italic; font-weight: 500; color: var(--fg-deep); font-size: .7em; }
+.fg-arch {
+  width: 10.5rem; height: 13.5rem; margin: 0 auto 1.2rem; overflow: hidden;
+  border-radius: 5.25rem 5.25rem 1rem 1rem;
+  border: 3px solid var(--fg-blush); outline: 1px solid var(--fg-rose); outline-offset: 5px;
+}
+.fg-arch img { width: 100%; height: 100%; object-fit: cover; }
+.fg-date { font-family: var(--fg-serif); font-size: 1.1rem; letter-spacing: .1em; margin: 0 0 1.4rem; }
+.fg-guest { color: var(--fg-soft); font-size: .82rem; margin: 0 0 .3rem; }
+.fg-guest__name {
+  font-family: var(--fg-serif); font-size: 1.5rem; font-weight: 600;
+  color: var(--fg-deep); margin: 0 0 1.6rem;
+}
+.fg-btn {
+  font-family: var(--fg-sans); font-size: .78rem; letter-spacing: .26em; text-transform: uppercase;
+  color: #fff; background: linear-gradient(135deg, var(--fg-rose), var(--fg-deep));
+  border: none; border-radius: 999px; padding: 1rem 2.2rem; cursor: pointer;
+  box-shadow: 0 12px 24px -12px rgba(169,96,123,.7);
+  transition: transform .3s, box-shadow .3s;
+}
+.fg-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 30px -12px rgba(169,96,123,.8); }
+.fg-btn--sm { padding: .75rem 1.5rem; text-decoration: none; display: inline-block; }
+.fg-btn--ghost { background: transparent; color: var(--fg-deep); border: 1px solid var(--fg-rose); box-shadow: none; }
+/* kelopak bunga melayang */
+.fg-petals span {
+  position: absolute; top: -4%; width: 14px; height: 14px; z-index: 0;
+  background: radial-gradient(circle at 35% 35%, #f3c6cf, var(--fg-rose));
+  border-radius: 80% 0 80% 0; opacity: .55;
+  animation: fgFall 11s linear infinite;
+}
+.fg-petals span:nth-child(1) { left: 8%; animation-delay: 0s; }
+.fg-petals span:nth-child(2) { left: 32%; animation-delay: 2.5s; animation-duration: 13s; }
+.fg-petals span:nth-child(3) { left: 58%; animation-delay: 5s; }
+.fg-petals span:nth-child(4) { left: 76%; animation-delay: 1.2s; animation-duration: 15s; }
+.fg-petals span:nth-child(5) { left: 90%; animation-delay: 7s; }
+@keyframes fgFall {
+  0% { transform: translateY(-5vh) rotate(0deg); }
+  100% { transform: translateY(108vh) rotate(340deg); }
+}
+
+/* ---------- Section ---------- */
+.fg-section { padding: 4rem 1.5rem; max-width: 42rem; margin: 0 auto; text-align: center; }
+.fg-section--blush { max-width: none; background: linear-gradient(180deg, var(--fg-blush), var(--fg-cream)); }
+.fg-section--blush > * { max-width: 42rem; margin-left: auto; margin-right: auto; }
+.fg-kicker { font-size: .68rem; letter-spacing: .4em; text-transform: uppercase; color: var(--fg-rose); margin: 0 0 .9rem; }
+.fg-h2 { font-family: var(--fg-serif); font-weight: 600; font-size: clamp(1.9rem, 7.5vw, 2.5rem); margin: 0 0 2.2rem; }
+.fg-divider { width: 10rem; color: var(--fg-rose); margin: 0 auto 1.8rem; display: block; }
+
+/* ---------- Salam ---------- */
+.fg-salam__pembuka { font-family: var(--fg-serif); font-size: 1.45rem; margin: 0 0 1.2rem; }
+.fg-salam__kutipan { font-style: italic; color: var(--fg-soft); margin: 0; padding: 0 .5rem; }
+
+/* ---------- Profil ---------- */
+.fg-couple { display: grid; gap: 2.6rem; }
+@media (min-width: 640px) { .fg-couple { grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1.6rem; } }
+.fg-person__frame {
+  width: 10.5rem; height: 13rem; margin: 0 auto 1.2rem; overflow: hidden;
+  border-radius: 5.25rem 5.25rem 1rem 1rem;
+  border: 3px solid #fff; box-shadow: 0 20px 44px -20px rgba(169,96,123,.5);
+}
+.fg-person__frame img { width: 100%; height: 100%; object-fit: cover; }
+.fg-person__nama { font-family: var(--fg-serif); font-size: 1.55rem; margin: 0 0 .3rem; }
+.fg-person__ortu { color: var(--fg-soft); font-size: .88rem; margin: 0 0 .6rem; }
+.fg-person__ig { font-size: .78rem; letter-spacing: .14em; text-decoration: none; }
+.fg-person__ig[href=""], .fg-person__ig:not([href]) { display: none; }
+.fg-heart { font-size: 2.2rem; color: var(--fg-rose); animation: fgPulse 2.6s ease-in-out infinite; }
+@keyframes fgPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.18); } }
+
+/* ---------- Countdown ---------- */
+.fg-cd { display: flex; gap: .7rem; justify-content: center; flex-wrap: wrap; }
+.fg-cd__item {
+  width: 4.6rem; padding: 1rem .4rem; background: var(--fg-card);
+  border: 1px solid rgba(192,138,146,.4); border-radius: 1rem;
+  box-shadow: 0 14px 30px -18px rgba(169,96,123,.55);
+}
+.fg-cd__item span { font-family: var(--fg-serif); font-size: 1.7rem; font-weight: 700; color: var(--fg-deep); display: block; line-height: 1.2; }
+.fg-cd__item small { font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: var(--fg-soft); }
+
+/* ---------- Acara ---------- */
+.fg-event {
+  background: var(--fg-card); border: 1px solid rgba(192,138,146,.35);
+  border-radius: 1.2rem; padding: 2rem 1.5rem; margin: 0 auto 1.2rem; max-width: 28rem;
+  box-shadow: 0 18px 36px -22px rgba(169,96,123,.5);
+}
+.fg-event__leaf { width: 1.6rem; color: var(--fg-sage); margin: 0 auto .6rem; display: block; }
+.fg-event__nama { font-family: var(--fg-serif); font-size: 1.5rem; margin: 0 0 .4rem; }
+.fg-event__tanggal { margin: 0; font-size: .95rem; }
+.fg-event__jam { margin: .25rem 0 0; color: var(--fg-soft); letter-spacing: .06em; }
+.fg-venue { margin-top: 2.2rem; }
+.fg-venue__nama { font-family: var(--fg-serif); font-size: 1.35rem; margin: 0 0 .3rem; }
+.fg-venue__alamat { color: var(--fg-soft); font-size: .9rem; margin: 0 0 1.3rem; }
+.fg-venue__actions { display: flex; gap: .7rem; justify-content: center; flex-wrap: wrap; }
+.fg-venue__actions a[href=""] { display: none; }
+
+/* ---------- Kisah (timeline) ---------- */
+.fg-timeline { position: relative; text-align: left; max-width: 30rem; margin: 0 auto; padding-left: 1.8rem; }
+.fg-timeline::before { content: ""; position: absolute; left: .45rem; top: .4rem; bottom: .4rem; width: 2px; background: linear-gradient(var(--fg-rose), var(--fg-sage)); border-radius: 2px; }
+.fg-tl { position: relative; padding: 0 0 1.8rem .6rem; }
+.fg-tl:last-child { padding-bottom: 0; }
+.fg-tl::before {
+  content: "❀"; position: absolute; left: -1.8rem; top: -.15rem;
+  width: 1.1rem; text-align: center; color: var(--fg-deep); font-size: 1rem;
+  background: var(--fg-cream); border-radius: 50%;
+}
+.fg-tl__waktu {
+  display: inline-block; font-size: .7rem; letter-spacing: .24em; text-transform: uppercase;
+  color: #fff; background: var(--fg-sage); border-radius: 999px; padding: .25rem .9rem; margin-bottom: .5rem;
+}
+.fg-tl__judul { font-family: var(--fg-serif); font-size: 1.25rem; margin: 0 0 .3rem; }
+.fg-tl__isi { color: var(--fg-soft); font-size: .92rem; margin: 0; }
+
+/* ---------- Galeri ---------- */
+.fg-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: .8rem; }
+@media (min-width: 640px) { .fg-grid { grid-template-columns: repeat(3, 1fr); } }
+.fg-grid figure { margin: 0; overflow: hidden; border-radius: 1rem; aspect-ratio: 1; background: var(--fg-blush); border: 3px solid #fff; box-shadow: 0 12px 26px -16px rgba(169,96,123,.5); }
+.fg-grid img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s ease; }
+.fg-grid figure:hover img { transform: scale(1.06) rotate(.5deg); }
+
+/* ---------- RSVP ---------- */
+.fg-form { max-width: 26rem; margin: 0 auto; text-align: left; }
+.fg-field { display: block; margin-bottom: 1.1rem; }
+.fg-field span { display: block; font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; color: var(--fg-soft); margin-bottom: .45rem; }
+.fg-field input, .fg-field select, .fg-field textarea {
+  width: 100%; font-family: var(--fg-sans); font-size: 1rem; color: var(--fg-plum);
+  background: #fff; border: 1px solid rgba(192,138,146,.5); border-radius: .8rem;
+  padding: .9rem 1rem; box-sizing: border-box;
+}
+.fg-field input:focus, .fg-field select:focus, .fg-field textarea:focus { outline: 2px solid var(--fg-rose); outline-offset: 1px; }
+.fg-form .fg-btn { width: 100%; margin-top: .4rem; }
+.fg-form__note { font-size: .85rem; color: var(--fg-deep); min-height: 1.4em; text-align: center; }
+.kh-honeypot { position: absolute !important; left: -9999px; opacity: 0; height: 0; }
+
+/* ---------- Ucapan ---------- */
+.fg-wishes { display: grid; gap: .9rem; max-width: 30rem; margin: 0 auto; text-align: left; }
+.fg-wishes__empty { text-align: center; color: var(--fg-soft); }
+.fg-wish { background: #fff; border: 1px solid rgba(192,138,146,.3); border-radius: 1rem; padding: 1.1rem 1.3rem; box-shadow: 0 10px 24px -18px rgba(169,96,123,.5); }
+.fg-wish__nama { font-weight: 500; color: var(--fg-deep); margin: 0; font-size: .95rem; }
+.fg-wish__status { font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: var(--fg-sage); margin-left: .5rem; }
+.fg-wish__teks { margin: .4rem 0 0; font-size: .92rem; color: var(--fg-plum); }
+
+/* ---------- Hadiah ---------- */
+.fg-hadiah__intro { max-width: 30rem; margin: 0 auto 1.8rem; color: var(--fg-soft); }
+.fg-rek {
+  background: linear-gradient(135deg, #fff, var(--fg-blush));
+  border: 1px solid rgba(192,138,146,.4); border-radius: 1.2rem;
+  padding: 1.6rem; margin: 0 auto 1rem; max-width: 26rem;
+}
+.fg-rek__bank { font-size: .72rem; letter-spacing: .26em; text-transform: uppercase; color: var(--fg-soft); margin: 0 0 .3rem; }
+.fg-rek__nomor { font-family: var(--fg-serif); font-size: 1.6rem; font-weight: 700; letter-spacing: .06em; margin: 0 0 .2rem; color: var(--fg-plum); }
+.fg-rek__nama { font-size: .88rem; color: var(--fg-soft); margin: 0 0 1rem; }
+
+/* ---------- Info ---------- */
+.fg-info { list-style: none; margin: 0 auto; padding: 0; max-width: 28rem; text-align: left; }
+.fg-info li {
+  background: #fff; border-left: 4px solid var(--fg-sage); border-radius: .6rem;
+  padding: .9rem 1.1rem; margin-bottom: .7rem; font-size: .92rem;
+  box-shadow: 0 8px 20px -14px rgba(0,0,0,.25);
+}
+
+/* ---------- Penutup ---------- */
+.fg-penutup__teks { max-width: 30rem; margin: 0 auto 1.4rem; color: var(--fg-soft); }
+.fg-penutup__salam { font-family: var(--fg-serif); font-size: 1.25rem; margin: 0 0 .8rem; }
+.fg-penutup__nama { font-family: var(--fg-serif); font-size: 1.9rem; font-weight: 600; color: var(--fg-deep); margin: 0 0 1.6rem; }
+.fg-kredit { font-size: .75rem; color: var(--fg-soft); }
+.fg-kredit a { color: inherit; text-decoration: none; border-bottom: 1px dotted; }
+.fg-kredit a[href=""] { display: none; }
+
+/* ---------- Musik (tombol melayang) ---------- */
+.fg-musik { position: fixed; right: 1rem; bottom: 5rem; z-index: 60; }
+.fg-musik button {
+  width: 3rem; height: 3rem; border-radius: 50%; cursor: pointer;
+  border: 1px solid rgba(192,138,146,.6); background: rgba(255,255,255,.9);
+  color: var(--fg-deep); display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 10px 24px -12px rgba(169,96,123,.7);
+}
+.fg-musik button svg { width: 1.4rem; height: 1.4rem; }
+.fg-musik button.fg-playing { animation: fgSpin 6s linear infinite; }
+@keyframes fgSpin { to { transform: rotate(360deg); } }
+
+/* ---------- Nav bawah ---------- */
+.fg-nav {
+  position: fixed; left: 50%; transform: translateX(-50%); bottom: .9rem; z-index: 60;
+  display: flex; gap: .2rem; background: rgba(255,255,255,.92);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(192,138,146,.4); border-radius: 999px; padding: .35rem .5rem;
+  box-shadow: 0 14px 30px -16px rgba(169,96,123,.6);
+  max-width: calc(100vw - 2rem); overflow-x: auto;
+}
+.fg-nav a {
+  font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; text-decoration: none;
+  color: var(--fg-plum); padding: .55rem .85rem; border-radius: 999px; white-space: nowrap;
+}
+.fg-nav a:hover { background: var(--fg-blush); }
+
+/* ---------- Reveal ---------- */
+.kh-reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s ease, transform .9s cubic-bezier(.22,.8,.32,1); }
+.kh-reveal.kh-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .kh-reveal { opacity: 1; transform: none; transition: none; }
+  .fg-petals, .fg-heart, .fg-musik button.fg-playing { animation: none; }
+  .fg-grid img { transition: none; }
+}
+
+.kh-pesan {
+  position: fixed; right: 1rem; bottom: 8.6rem; z-index: 60;
+  background: #25d366; color: #fff !important; font-size: .8rem; font-weight: 500;
+  padding: .8rem 1.15rem; border-radius: 999px; text-decoration: none;
+  box-shadow: 0 10px 26px -10px rgba(0,0,0,.45);
+}
