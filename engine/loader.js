@@ -214,6 +214,44 @@ function isiNamaTamu(akar) {
   });
 }
 
+/* Ganti placeholder {{...}} di atribut alt (tidak terjangkau TreeWalker teks) */
+function isiAlt(akar, cfg) {
+  $('[alt]', akar).forEach(function (el) {
+    var v = el.getAttribute('alt');
+    if (v && v.indexOf('{{') !== -1) {
+      el.setAttribute('alt', isiTeks(v, cfg));
+    }
+  });
+}
+
+/* Countdown: isi [data-cd-d/h/m/s] dari cfg.acara.tanggal, update tiap detik */
+function jalankanCountdown(akar, cfg) {
+  var wadah = akar.querySelector('[data-countdown]');
+  if (!wadah) return;
+  var target = cfg && cfg.acara && cfg.acara.tanggal;
+  if (!target) return;
+  var t = Date.parse(target);
+  if (isNaN(t)) return;
+  var elD = wadah.querySelector('[data-cd-d]');
+  var elH = wadah.querySelector('[data-cd-h]');
+  var elM = wadah.querySelector('[data-cd-m]');
+  var elS = wadah.querySelector('[data-cd-s]');
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function tick() {
+    var sisa = Math.max(0, t - Date.now());
+    var d = Math.floor(sisa / 86400000);
+    var h = Math.floor(sisa % 86400000 / 3600000);
+    var m = Math.floor(sisa % 3600000 / 60000);
+    var s = Math.floor(sisa % 60000 / 1000);
+    if (elD) elD.textContent = d;
+    if (elH) elH.textContent = pad(h);
+    if (elM) elM.textContent = pad(m);
+    if (elS) elS.textContent = pad(s);
+  }
+  tick();
+  setInterval(tick, 1000);
+}
+
 /* ---------- gating & penyembunyian section kosong ---------- */
 
 function adaIsi(v) {
@@ -342,8 +380,10 @@ async function mulai() {
   kembangkanUlang(app, cfg);
   isiPlaceholderDom(app, cfg);
   terapkanAtribut(app, cfg);
+  isiAlt(app, cfg);
   isiNamaTamu(app);
   terapkanGating(app, cfg, paketAktif);
+  jalankanCountdown(app, cfg);
 
   /* Judul + meta */
   if (cfg.judul) {
