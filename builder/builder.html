@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Builder Config Undangan</title>
+<style>
+  *{box-sizing:border-box;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  body{margin:0;background:#f6f4ef;color:#333;padding:16px}
+  .wrap{max-width:860px;margin:0 auto}
+  h1{font-size:1.4rem;margin:0 0 4px}
+  h2{font-size:1rem;margin:22px 0 8px;padding-bottom:4px;border-bottom:2px solid #c9a227}
+  p.desc{color:#666;font-size:.85rem;margin:0 0 16px}
+  label{display:block;font-size:.8rem;font-weight:600;margin:10px 0 4px}
+  input[type=text],input[type=url],input[type=datetime-local],select,textarea{width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;font-size:.9rem;background:#fff}
+  textarea{resize:vertical}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:600px){.grid2{grid-template-columns:1fr}}
+  .row{background:#fff;border:1px solid #ddd;border-radius:8px;padding:10px;margin-bottom:8px;position:relative}
+  .row .hapus{position:absolute;top:6px;right:8px;border:none;background:#e74c3c;color:#fff;border-radius:4px;padding:2px 8px;cursor:pointer;font-size:.75rem}
+  button{cursor:pointer;border:none;border-radius:6px;padding:10px 18px;font-size:.9rem;font-weight:600}
+  .btn-tambah{background:#eee;color:#333;margin-top:6px}
+  .btn-utama{background:#2c7a4b;color:#fff;margin:8px 8px 0 0}
+  .btn-demo{background:#8e44ad;color:#fff;margin:8px 8px 0 0}
+  .btn-salin{background:#2980b9;color:#fff;margin-top:8px}
+  #out{font-family:monospace;font-size:.75rem}
+  .check{display:flex;align-items:center;gap:8px;margin:10px 0}
+  .check input{width:auto}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Builder Config Undangan</h1>
+  <p class="desc">Isi form di bawah, klik <b>Hasilkan Config</b>, lalu salin hasilnya ke Halaman Blogger (mode HTML).</p>
+
+  <h2>Dasar</h2>
+  <label>ID Undangan (tetap, terpisah dari slug)</label>
+  <input type="text" id="id" placeholder="contoh: budi-sinta">
+  <div class="check"><input type="checkbox" id="demo"><label for="demo" style="margin:0">Mode demo</label></div>
+  <label>Judul</label>
+  <input type="text" id="judul" placeholder="The Wedding of ...">
+  <div class="grid2">
+    <div><label>Tema</label>
+      <select id="tema">
+        <option value="simple-white">simple-white</option>
+        <option value="floral-garden" selected>floral-garden</option>
+        <option value="royal-palace">royal-palace</option>
+      </select></div>
+    <div><label>Paket</label>
+      <select id="paket">
+        <option value="basic">basic</option>
+        <option value="premium" selected>premium</option>
+        <option value="exclusive">exclusive</option>
+      </select></div>
+  </div>
+  <label>Versi (v)</label>
+  <input type="text" id="v" value="1.0.0">
+  <label>Cover (URL foto)</label>
+  <input type="url" id="cover">
+
+  <h2>Salam</h2>
+  <label>Pembuka</label>
+  <input type="text" id="salam_pembuka" value="Assalamu'alaikum Wr. Wb.">
+  <label>Kutipan</label>
+  <textarea id="salam_kutipan" rows="2">Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu... (QS. Ar-Ruum: 21)</textarea>
+
+  <h2>Mempelai 1</h2>
+  <div class="grid2">
+    <div><label>Nama lengkap</label><input type="text" id="m0_nama"></div>
+    <div><label>Panggilan</label><input type="text" id="m0_panggilan"></div>
+  </div>
+  <label>Putra/Putri dari</label><input type="text" id="m0_ortu">
+  <label>Foto (URL)</label><input type="url" id="m0_foto">
+  <div class="grid2">
+    <div><label>Fokus foto (mis. 30% 40%)</label><input type="text" id="m0_fotoFokus"></div>
+    <div><label>Instagram (URL)</label><input type="url" id="m0_instagram"></div>
+  </div>
+
+  <h2>Mempelai 2</h2>
+  <div class="grid2">
+    <div><label>Nama lengkap</label><input type="text" id="m1_nama"></div>
+    <div><label>Panggilan</label><input type="text" id="m1_panggilan"></div>
+  </div>
+  <label>Putra/Putri dari</label><input type="text" id="m1_ortu">
+  <label>Foto (URL)</label><input type="url" id="m1_foto">
+  <div class="grid2">
+    <div><label>Fokus foto (mis. 50% 30%)</label><input type="text" id="m1_fotoFokus"></div>
+    <div><label>Instagram (URL)</label><input type="url" id="m1_instagram"></div>
+  </div>
+
+  <h2>Acara</h2>
+  <label>Tanggal acara (target countdown, ISO)</label>
+  <input type="text" id="acara_tanggal" placeholder="2026-12-12T08:00:00+07:00">
+  <label>Daftar acara</label>
+  <div id="daftarAcara"></div>
+  <button type="button" class="btn-tambah" onclick="tambahBaris('daftarAcara','acara')">+ Tambah acara</button>
+
+  <h2>Lokasi</h2>
+  <label>Nama lokasi</label><input type="text" id="lokasi_nama">
+  <label>Alamat</label><input type="text" id="lokasi_alamat">
+  <label>Link Google Maps</label><input type="url" id="lokasi_maps">
+
+  <h2>Kisah</h2>
+  <div id="daftarKisah"></div>
+  <button type="button" class="btn-tambah" onclick="tambahBaris('daftarKisah','kisah')">+ Tambah kisah</button>
+
+  <h2>Galeri (satu URL per baris)</h2>
+  <textarea id="galeri" rows="5" placeholder="https://..."></textarea>
+
+  <h2>Rekening</h2>
+  <div id="daftarRekening"></div>
+  <button type="button" class="btn-tambah" onclick="tambahBaris('daftarRekening','rekening')">+ Tambah rekening</button>
+
+  <h2>Info (satu baris = satu item)</h2>
+  <textarea id="info" rows="4" placeholder="Dress code: ..."></textarea>
+
+  <h2>Ucapan Contoh (demo saja)</h2>
+  <div id="daftarUcapan"></div>
+  <button type="button" class="btn-tambah" onclick="tambahBaris('daftarUcapan','ucapan')">+ Tambah ucapan</button>
+
+  <h2>Lainnya</h2>
+  <label>Musik (path relatif BASE atau URL penuh)</label>
+  <input type="text" id="musik" placeholder="themes/floral-garden/lagu-demo.mp3">
+  <label>Livestream (kosong = disembunyikan)</label>
+  <input type="url" id="livestream" placeholder="https://youtube.com/...">
+  <label>URL Apps Script (rsvpUrl, kosong di demo)</label>
+  <input type="url" id="rsvpUrl" placeholder="https://script.google.com/macros/s/.../exec">
+  <label>Kredit foto</label>
+  <input type="text" id="kredit_foto" placeholder="Foto: ...">
+  <label>URL kredit foto</label>
+  <input type="url" id="kredit_url" placeholder="https://www.pexels.com/...">
+
+  <div style="margin-top:24px">
+    <button type="button" class="btn-demo" onclick="isiDemo()">Muat contoh demo</button>
+    <button type="button" class="btn-utama" onclick="hasilkan()">Hasilkan Config</button>
+  </div>
+
+  <h2>Hasil (JSON satu baris)</h2>
+  <textarea id="out" rows="8" readonly placeholder="Hasil config akan muncul di sini..."></textarea>
+  <button type="button" class="btn-salin" onclick="salin()">Salin</button>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const val = id => $(id).value.trim();
+
+const SKEMA_BARIS = {
+  acara:    [['nama','Nama acara'],['tanggal','Tanggal (mis. Sabtu, 12 Desember 2026)'],['jam','Jam (mis. 08.00 - 09.30 WIB)']],
+  kisah:    [['judul','Judul'],['waktu','Waktu (mis. 2019)'],['isi','Isi (textarea)']],
+  rekening: [['bank','Bank / e-wallet'],['nomor','Nomor'],['nama','Atas nama']],
+  ucapan:   [['nama','Nama'],['status','Status (Hadir/Tidak/Ragu)'],['ucapan','Ucapan (textarea)']]
+};
+
+function tambahBaris(wadahId, jenis, isi) {
+  const wadah = $(wadahId);
+  const div = document.createElement('div');
+  div.className = 'row';
+  div.dataset.jenis = jenis;
+  SKEMA_BARIS[jenis].forEach(([f, label]) => {
+    const l = document.createElement('label');
+    l.textContent = label;
+    div.appendChild(l);
+    let el;
+    if (f === 'isi' || f === 'ucapan') {
+      el = document.createElement('textarea');
+      el.rows = 2;
+    } else {
+      el = document.createElement('input');
+      el.type = 'text';
+    }
+    el.dataset.f = f;
+    if (isi && isi[f] !== undefined) el.value = isi[f];
+    div.appendChild(el);
+  });
+  const hapus = document.createElement('button');
+  hapus.type = 'button';
+  hapus.className = 'hapus';
+  hapus.textContent = 'Hapus';
+  hapus.onclick = () => div.remove();
+  div.appendChild(hapus);
+  wadah.appendChild(div);
+}
+
+function bacaBaris(wadahId) {
+  const hasil = [];
+  $(wadahId).querySelectorAll('.row').forEach(row => {
+    const o = {};
+    row.querySelectorAll('[data-f]').forEach(el => {
+      o[el.dataset.f] = el.value.trim();
+    });
+    if (Object.values(o).some(v => v)) hasil.push(o);
+    return null;
+  });
+  return hasil;
+}
+
+function barisTeks(id) {
+  return val(id).split('\n').map(s => s.trim()).filter(Boolean);
+}
+
+function hasilkan() {
+  const mempelai = [0, 1].map(i => ({
+    nama: val('m' + i + '_nama'),
+    panggilan: val('m' + i + '_panggilan'),
+    ortu: val('m' + i + '_ortu'),
+    foto: val('m' + i + '_foto'),
+    fotoFokus: val('m' + i + '_fotoFokus'),
+    instagram: val('m' + i + '_instagram')
+  }));
+  const cfg = {
+    id: val('id'),
+    demo: $('demo').checked,
+    tema: val('tema'),
+    paket: val('paket'),
+    v: val('v'),
+    judul: val('judul'),
+    cover: val('cover') || undefined,
+    salam: { pembuka: val('salam_pembuka'), kutipan: val('salam_kutipan') },
+    mempelai: mempelai,
+    acara: { tanggal: val('acara_tanggal'), daftar: bacaBaris('daftarAcara') },
+    lokasi: { nama: val('lokasi_nama'), alamat: val('lokasi_alamat'), maps: val('lokasi_maps') },
+    kisah: bacaBaris('daftarKisah'),
+    galeri: barisTeks('galeri'),
+    musik: val('musik'),
+    rekening: bacaBaris('daftarRekening'),
+    info: barisTeks('info'),
+    ucapanContoh: bacaBaris('daftarUcapan'),
+    livestream: val('livestream'),
+    kredit: { foto: val('kredit_foto'), url: val('kredit_url') },
+    rsvpUrl: val('rsvpUrl')
+  };
+  $('out').value = JSON.stringify(cfg);
+}
+
+function salin() {
+  const out = $('out');
+  out.select();
+  document.execCommand('copy');
+  if (navigator.clipboard) navigator.clipboard.writeText(out.value).catch(() => {});
+  alert('Config tersalin. Tempel di Halaman Blogger (mode HTML).');
+}
+
+function isiDemo() {
+  const px = (id, w) => 'https://images.pexels.com/photos/' + id + '/pexels-photo-' + id + '.jpeg?auto=compress&cs=tinysrgb&w=' + w;
+  $('id').value = 'demo-romeo-juliet';
+  $('demo').checked = true;
+  $('judul').value = 'The Wedding of Romeo & Juliet';
+  $('tema').value = 'floral-garden';
+  $('paket').value = 'premium';
+  $('v').value = '1.0.0';
+  $('salam_pembuka').value = "Assalamu'alaikum Wr. Wb.";
+  $('salam_kutipan').value = 'Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu... (QS. Ar-Ruum: 21)';
+  const m = [
+    {nama:'Romeo Montague', panggilan:'Romeo', ortu:'Putra dari Lord & Lady Montague', foto:px(5729224,800), fotoFokus:'30% 40%', instagram:'https://instagram.com/romeo'},
+    {nama:'Juliet Capulet', panggilan:'Juliet', ortu:'Putri dari Lord & Lady Capulet', foto:px(5729222,800), fotoFokus:'50% 30%', instagram:'https://instagram.com/juliet'}
+  ];
+  m.forEach((x, i) => {
+    $('m'+i+'_nama').value = x.nama; $('m'+i+'_panggilan').value = x.panggilan;
+    $('m'+i+'_ortu').value = x.ortu; $('m'+i+'_foto').value = x.foto;
+    $('m'+i+'_fotoFokus').value = x.fotoFokus; $('m'+i+'_instagram').value = x.instagram;
+  });
+  $('acara_tanggal').value = '2026-12-12T08:00:00+07:00';
+  $('daftarAcara').innerHTML = '';
+  [
+    {nama:'Akad Nikah', tanggal:'Sabtu, 12 Desember 2026', jam:'08.00 - 09.30 WIB'},
+    {nama:'Resepsi', tanggal:'Sabtu, 12 Desember 2026', jam:'11.00 - 14.00 WIB'}
+  ].forEach(x => tambahBaris('daftarAcara', 'acara', x));
+  $('lokasi_nama').value = 'Verona Ballroom';
+  $('lokasi_alamat').value = 'Jl. Contoh No. 1, Jakarta Selatan';
+  $('lokasi_maps').value = 'https://maps.google.com/?q=Verona+Ballroom+Jakarta';
+  $('daftarKisah').innerHTML = '';
+  [
+    {judul:'Pertama Bertemu', waktu:'2019', isi:'Bertemu di sebuah pesta topeng di malam musim panas — Romeo tak bisa mengalihkan pandangannya dari seorang gadis bernama Juliet.'},
+    {judul:'Menjalin Hubungan', waktu:'2021', isi:'Setelah bertahun-tahun menyembunyikan hubungan dari dua keluarga besar, mereka akhirnya berani melangkah bersama.'},
+    {judul:'Lamaran', waktu:'2025', isi:'Dilamar di taman mawar saat matahari terbenam, dengan cincin warisan keluarga Montague.'}
+  ].forEach(x => tambahBaris('daftarKisah', 'kisah', x));
+  $('galeri').value = [5729230,5729228,5729227,5729226,5729223,5729206,5729205,5729204,5729203].map(id => px(id,800)).join('\n');
+  $('daftarRekening').innerHTML = '';
+  [
+    {bank:'Bank Demo', nomor:'0000000000', nama:'Romeo Montague'},
+    {bank:'E-Wallet Demo', nomor:'081200000000', nama:'Juliet Capulet'}
+  ].forEach(x => tambahBaris('daftarRekening', 'rekening', x));
+  $('info').value = ['Dress code: pastel / earth tone','Parkir tersedia di basement dan halaman depan','Mohon hadir 15 menit lebih awal'].join('\n');
+  $('daftarUcapan').innerHTML = '';
+  [
+    {nama:'Mercutio', status:'Hadir', ucapan:'Selamat untuk kalian berdua!'},
+    {nama:'Benvolio', status:'Hadir', ucapan:'Akhirnya! Bahagia selalu ya.'},
+    {nama:'Nurse', status:'Ragu', ucapan:'Semoga lancar sampai hari H.'}
+  ].forEach(x => tambahBaris('daftarUcapan', 'ucapan', x));
+  $('musik').value = 'themes/floral-garden/lagu-demo.mp3';
+  $('livestream').value = '';
+  $('rsvpUrl').value = '';
+  $('kredit_foto').value = 'Foto: Jin Wedding di Pexels';
+  $('kredit_url').value = 'https://www.pexels.com/@jin-wedding-3859587/';
+  $('cover').value = px(5729225,1200);
+  alert('Data demo terisi. Klik "Hasilkan Config".');
+}
+
+// Baris awal kosong agar form siap dipakai
+tambahBaris('daftarAcara','acara');
+tambahBaris('daftarKisah','kisah');
+tambahBaris('daftarRekening','rekening');
+</script>
+</body>
+</html>
