@@ -1,0 +1,223 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+
+<div class="rp">
+  <!-- ============ INTRO SINEMATIK ============ -->
+  <section class="rp-intro" data-fitur="intro" aria-label="Pembuka">
+    <div class="rp-intro__gate rp-intro__gate--left"></div>
+    <div class="rp-intro__gate rp-intro__gate--right"></div>
+    <div class="rp-intro__inner">
+      <p class="rp-intro__kicker">Dengan hormat mempersembahkan</p>
+      <div class="rp-monogram">{{mempelai.0.panggilan}}<span>·</span>{{mempelai.1.panggilan}}</div>
+      <p class="rp-intro__tap">Ketuk untuk memasuki istana</p>
+    </div>
+  </section>
+
+  <!-- ============ COVER ============ -->
+  <section class="rp-cover" data-fitur="cover">
+    <div class="rp-cover__bg"><img data-src="{{cover}}" alt="Foto sampul {{judul}}"></div>
+    <div class="rp-cover__veil"></div>
+    <div class="rp-ornament rp-ornament--tl" aria-hidden="true"></div>
+    <div class="rp-ornament rp-ornament--tr" aria-hidden="true"></div>
+    <div class="rp-ornament rp-ornament--bl" aria-hidden="true"></div>
+    <div class="rp-ornament rp-ornament--br" aria-hidden="true"></div>
+    <div class="rp-cover__inner">
+      <p class="rp-eyebrow kh-reveal">Undangan Pernikahan</p>
+      <h1 class="rp-names kh-reveal"><span>{{mempelai.0.panggilan}}</span><em>&amp;</em><span>{{mempelai.1.panggilan}}</span></h1>
+      <div class="rp-goldrule kh-reveal" aria-hidden="true"><i></i><b></b><i></i></div>
+      <p class="rp-date kh-reveal">{{acara.daftar.0.tanggal}}</p>
+      <p class="rp-guest kh-reveal">Kepada Yth.<br>Bapak/Ibu/Saudara/i</p>
+      <p class="rp-guest__name kh-reveal" data-nama-tamu>Tamu Undangan</p>
+      <button class="rp-btn kh-reveal" id="btn-buka" type="button">Buka Undangan</button>
+    </div>
+  </section>
+
+  <!-- ============ SALAM ============ -->
+  <section class="rp-section" data-fitur="salam" id="salam">
+    <p class="rp-chapter kh-reveal">Bab I</p>
+    <p class="rp-salam__pembuka kh-reveal">{{salam.pembuka}}</p>
+    <blockquote class="rp-salam__kutipan kh-reveal">{{salam.kutipan}}</blockquote>
+  </section>
+
+  <!-- ============ PROFIL ============ -->
+  <section class="rp-section rp-section--dark" data-fitur="profil" id="profil">
+    <p class="rp-chapter kh-reveal">Bab II</p>
+    <h2 class="rp-h2 kh-reveal">Mempelai Agung</h2>
+    <div class="rp-couple">
+      <article class="rp-person kh-reveal">
+        <div class="rp-person__frame"><img data-src="{{mempelai.0.foto}}" alt="{{mempelai.0.nama}}"></div>
+        <h3 class="rp-person__nama">{{mempelai.0.nama}}</h3>
+        <p class="rp-person__ortu">{{mempelai.0.ortu}}</p>
+        <a class="rp-person__ig" data-href="{{mempelai.0.instagram}}" target="_blank" rel="noopener">Instagram</a>
+      </article>
+      <div class="rp-crest kh-reveal" aria-hidden="true">⚜</div>
+      <article class="rp-person kh-reveal">
+        <div class="rp-person__frame"><img data-src="{{mempelai.1.foto}}" alt="{{mempelai.1.nama}}"></div>
+        <h3 class="rp-person__nama">{{mempelai.1.nama}}</h3>
+        <p class="rp-person__ortu">{{mempelai.1.ortu}}</p>
+        <a class="rp-person__ig" data-href="{{mempelai.1.instagram}}" target="_blank" rel="noopener">Instagram</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ COUNTDOWN ============ -->
+  <section class="rp-section" data-fitur="countdown">
+    <p class="rp-chapter kh-reveal">Bab III</p>
+    <h2 class="rp-h2 kh-reveal">Detik Menuju Takhta Bahagia</h2>
+    <div class="rp-cd kh-reveal" data-countdown>
+      <div class="rp-cd__item"><span data-cd-d>0</span><small>Hari</small></div>
+      <div class="rp-cd__item"><span data-cd-h>0</span><small>Jam</small></div>
+      <div class="rp-cd__item"><span data-cd-m>0</span><small>Menit</small></div>
+      <div class="rp-cd__item"><span data-cd-s>0</span><small>Detik</small></div>
+    </div>
+  </section>
+
+  <!-- ============ ACARA ============ -->
+  <section class="rp-section rp-section--dark" data-fitur="acara" id="acara">
+    <p class="rp-chapter kh-reveal">Bab IV</p>
+    <h2 class="rp-h2 kh-reveal">Rangkaian Acara</h2>
+    <div data-ulang="acara.daftar">
+      <article class="rp-event kh-reveal kh-repeat">
+        <div class="rp-event__frame">
+          <h3 class="rp-event__nama">{{nama}}</h3>
+          <p class="rp-event__tanggal">{{tanggal}}</p>
+          <p class="rp-event__jam">{{jam}}</p>
+        </div>
+      </article>
+    </div>
+    <div class="rp-venue kh-reveal">
+      <h3 class="rp-venue__nama">{{lokasi.nama}}</h3>
+      <p class="rp-venue__alamat">{{lokasi.alamat}}</p>
+      <div class="rp-venue__actions">
+        <a class="rp-btn rp-btn--sm" data-href="{{lokasi.maps}}" target="_blank" rel="noopener">Lihat Peta</a>
+        <a class="rp-btn rp-btn--sm rp-btn--ghost" data-kalender target="_blank" rel="noopener">Simpan Tanggal</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RUNDOWN ============ -->
+  <section class="rp-section" data-fitur="rundown">
+    <p class="rp-chapter kh-reveal">Bab V</p>
+    <h2 class="rp-h2 kh-reveal">Susunan Acara</h2>
+    <ol class="rp-rundown" data-ulang="rundown">
+      <li class="kh-repeat kh-reveal"><span class="rp-rundown__jam">{{jam}}</span><span class="rp-rundown__acara">{{acara}}</span></li>
+    </ol>
+  </section>
+
+  <!-- ============ KISAH ============ -->
+  <section class="rp-section rp-section--dark" data-fitur="kisah">
+    <p class="rp-chapter kh-reveal">Bab VI</p>
+    <h2 class="rp-h2 kh-reveal">Kisah Kami</h2>
+    <div class="rp-saga" data-ulang="kisah">
+      <article class="rp-saga__item kh-reveal kh-repeat">
+        <span class="rp-saga__waktu">{{waktu}}</span>
+        <h3 class="rp-saga__judul">{{judul}}</h3>
+        <p class="rp-saga__isi">{{isi}}</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ GALERI ============ -->
+  <section class="rp-section" data-fitur="galeri" id="galeri">
+    <p class="rp-chapter kh-reveal">Bab VII</p>
+    <h2 class="rp-h2 kh-reveal">Galeri Istana</h2>
+    <div class="rp-grid" data-ulang="galeri">
+      <figure class="kh-repeat kh-reveal"><img data-src="{{.}}" alt="Galeri foto {{judul}}" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <!-- ============ LIVESTREAM ============ -->
+  <section class="rp-section rp-section--dark" data-fitur="livestream">
+    <p class="rp-chapter kh-reveal">Bab VIII</p>
+    <h2 class="rp-h2 kh-reveal">Siaran Langsung</h2>
+    <p class="rp-stream__intro kh-reveal">Bagi yang berhalangan hadir, saksikan momen sakral kami melalui siaran langsung berikut.</p>
+    <div class="rp-video kh-reveal">
+      <iframe data-src="{{livestream}}" title="Siaran langsung pernikahan" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <!-- ============ RSVP ============ -->
+  <section class="rp-section" data-fitur="rsvp" id="rsvp">
+    <p class="rp-chapter kh-reveal">Bab IX</p>
+    <h2 class="rp-h2 kh-reveal">Konfirmasi Kehadiran</h2>
+    <form class="rp-form" id="rsvp-form">
+      <label class="rp-field"><span>Nama lengkap</span><input type="text" name="nama" required maxlength="100" placeholder="Nama Anda"></label>
+      <label class="rp-field"><span>Kehadiran</span>
+        <select name="status" required>
+          <option value="Hadir">Hadir</option>
+          <option value="Ragu">Ragu</option>
+          <option value="Tidak">Berhalangan</option>
+        </select>
+      </label>
+      <label class="rp-field"><span>Ucapan</span><textarea name="ucapan" rows="3" placeholder="Doa dan ucapan..."></textarea></label>
+      <input type="text" name="website" class="kh-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="rp-btn" type="submit">Kirim</button>
+      <p class="rp-form__note" data-rsvp-note></p>
+    </form>
+  </section>
+
+  <!-- ============ UCAPAN ============ -->
+  <section class="rp-section rp-section--dark" data-fitur="ucapan">
+    <p class="rp-chapter kh-reveal">Bab X</p>
+    <h2 class="rp-h2 kh-reveal">Ucapan &amp; Doa</h2>
+    <div class="rp-wishes" data-daftar-ucapan><p class="rp-wishes__empty">Memuat ucapan...</p></div>
+  </section>
+
+  <!-- ============ HADIAH ============ -->
+  <section class="rp-section" data-fitur="hadiah">
+    <p class="rp-chapter kh-reveal">Bab XI</p>
+    <h2 class="rp-h2 kh-reveal">Tanda Kasih</h2>
+    <p class="rp-hadiah__intro kh-reveal">Kehadiran Anda adalah anugerah. Jika berkenan memberi tanda kasih, kami menerimanya dengan penuh syukur.</p>
+    <div data-ulang="rekening">
+      <article class="rp-rek kh-reveal kh-repeat">
+        <p class="rp-rek__bank">{{bank}}</p>
+        <p class="rp-rek__nomor">{{nomor}}</p>
+        <p class="rp-rek__nama">a.n. {{nama}}</p>
+        <button class="rp-btn rp-btn--sm" type="button" data-salin="{{nomor}}">Salin</button>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ INFO ============ -->
+  <section class="rp-section rp-section--dark" data-fitur="info">
+    <p class="rp-chapter kh-reveal">Bab XII</p>
+    <h2 class="rp-h2 kh-reveal">Tata Tertib</h2>
+    <ul class="rp-info" data-ulang="info">
+      <li class="kh-repeat kh-reveal">{{.}}</li>
+    </ul>
+  </section>
+
+  <!-- ============ QR CHECK-IN ============ -->
+  <section class="rp-section" data-fitur="qr">
+    <p class="rp-chapter kh-reveal">Bab XIII</p>
+    <h2 class="rp-h2 kh-reveal">Check-in Tamu</h2>
+    <p class="rp-qr__intro kh-reveal">Tunjukkan kode QR ini kepada petugas di pintu masuk untuk proses check-in yang cepat.</p>
+    <div class="rp-qr__frame kh-reveal"><div data-qr></div></div>
+  </section>
+
+  <!-- ============ PENUTUP ============ -->
+  <section class="rp-section rp-penutup" data-fitur="penutup">
+    <div class="rp-goldrule kh-reveal" aria-hidden="true"><i></i><b></b><i></i></div>
+    <p class="rp-penutup__teks kh-reveal">Atas kehadiran dan doa restu Bapak/Ibu/Saudara/i, kami mengucapkan terima kasih yang sebesar-besarnya.</p>
+    <p class="rp-penutup__salam kh-reveal">Wassalamu'alaikum Wr. Wb.</p>
+    <p class="rp-penutup__nama kh-reveal">{{mempelai.0.panggilan}} &amp; {{mempelai.1.panggilan}}</p>
+    <p class="rp-kredit kh-reveal"><a data-href="{{kredit.url}}" target="_blank" rel="noopener">{{kredit.foto}}</a></p>
+  </section>
+
+  <!-- ============ MUSIK ============ -->
+  <div class="rp-musik" data-fitur="musik">
+    <audio data-musik data-src="{{musik}}" loop preload="none"></audio>
+    <button id="btn-musik" type="button" aria-label="Putar / jeda musik">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18 V6 l10 -2 v11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6.5" cy="18" r="2.4" fill="currentColor"/><circle cx="16.5" cy="15" r="2.4" fill="currentColor"/></svg>
+    </button>
+  </div>
+
+  <!-- ============ NAV ============ -->
+  <nav class="rp-nav" data-fitur="nav" aria-label="Navigasi undangan">
+    <a href="#profil">Mempelai</a>
+    <a href="#acara">Acara</a>
+    <a href="#galeri">Galeri</a>
+    <a href="#rsvp">RSVP</a>
+  </nav>
+</div>
