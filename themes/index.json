@@ -1,0 +1,23 @@
+[
+  {
+    "id": "simple-white",
+    "nama": "Simple White",
+    "paket": "basic",
+    "deskripsi": "Tema bersih bernuansa putih dengan animasi ringan, cocok untuk undangan yang simpel dan elegan.",
+    "preview": "preview.webp"
+  },
+  {
+    "id": "floral-garden",
+    "nama": "Floral Garden",
+    "paket": "premium",
+    "deskripsi": "Tema bunga romantis dengan ornamen dekoratif dan animasi lembut untuk nuansa taman yang hidup.",
+    "preview": "preview.webp"
+  },
+  {
+    "id": "royal-palace",
+    "nama": "Royal Palace",
+    "paket": "exclusive",
+    "deskripsi": "Tema mewah bergaya istana dengan animasi sinematik untuk kesan agung dan eksklusif.",
+    "preview": "preview.webp"
+  }
+]
